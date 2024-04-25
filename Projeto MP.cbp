@@ -40,9 +40,15 @@
 			<Add option="-lgcov --coverage" />
 		</Linker>
 		<Unit filename="catch.hpp" />
-		<Unit filename="romano.cpp.cpp" />
-		<Unit filename="romano.hpp.hpp" />
-		<Unit filename="testa_romano.cpp.cpp" />
+		<Unit filename="romanos.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="romanos.hpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="testa_romanos.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
