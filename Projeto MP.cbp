@@ -13,7 +13,11 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add option="-fprofile-arcs -ftest-coverage" />
 				</Compiler>
+				<Linker>
+					<Add option="--coverage -lgcov" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/Projeto MP" prefix_auto="1" extension_auto="1" />
@@ -30,12 +34,15 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add option="-fexceptions" />
+			<Add option="-fprofile-arcs -ftest-coverage" />
 		</Compiler>
+		<Linker>
+			<Add option="-lgcov --coverage" />
+		</Linker>
 		<Unit filename="catch.hpp" />
-		<Unit filename="main.cpp" />
-		<Unit filename="romano.hpp" />
-		<Unit filename="testa_romano.cpp" />
+		<Unit filename="romano.cpp.cpp" />
+		<Unit filename="romano.hpp.hpp" />
+		<Unit filename="testa_romano.cpp.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

@@ -11,6 +11,12 @@ TEST_CASE( "Numeros romanos - algarismos inv�lidos", "[romanos]" ) {
     REQUIRE( romanos_para_decimal("i") == -1 );
 }
 
+TEST_CASE( "Numeros romanos - algarismos com vdl", "[romanos]" ) {
+    REQUIRE( romanos_para_decimal("VV") == -1 );
+
+    REQUIRE( romanos_para_decimal("LL") == -1 );
+}
+
 TEST_CASE( "Numeros romanos - algarismos �nicos", "[romanos]" ) {
     REQUIRE( romanos_para_decimal("I") == 1 );
 
