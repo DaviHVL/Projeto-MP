@@ -2,9 +2,6 @@
 #include "catch.hpp"
 #include "romano.hpp.hpp"
 
-
-
-
 TEST_CASE( "Numeros romanos - algarismos inv�lidos", "[romanos]" ) {
     REQUIRE( romanos_para_decimal("G") == -1 );
 
@@ -17,13 +14,13 @@ TEST_CASE( "Numeros romanos - algarismos com vdl", "[romanos]" ) {
     REQUIRE( romanos_para_decimal("LL") == -1 );
 }
 
-TEST_CASE( "Numeros romanos - algarismos �nicos", "[romanos]" ) {
-    REQUIRE( romanos_para_decimal("I") == 1 );
+TEST_CASE( "Numeros romanos - algarismos com mais de vezes", "[romanos]" ) {
+    REQUIRE( romanos_para_decimal("XIIII") == -1 );
 
-    REQUIRE( romanos_para_decimal("V") == 5 );
-
-
+    REQUIRE( romanos_para_decimal("XXXXX") == -1 );
 }
+
+
 
 
 
