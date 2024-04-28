@@ -117,7 +117,7 @@
         -:  115:   *  This is one of the @link functors functor base classes@endlink.
         -:  116:   */
         -:  117:  template<typename _Arg1, typename _Arg2, typename _Result>
-        -:  118:    struct binary_function
+       18:  118:    struct binary_function
         -:  119:    {
         -:  120:      /// @c first_argument_type is the type of the first argument
         -:  121:      typedef _Arg1 	first_argument_type; 
@@ -350,12 +350,12 @@
         -:  348:
         -:  349:  /// One of the @link comparison_functors comparison functors@endlink.
         -:  350:  template<typename _Tp>
-        -:  351:    struct equal_to : public binary_function<_Tp, _Tp, bool>
+       18:  351:    struct equal_to : public binary_function<_Tp, _Tp, bool>
         -:  352:    {
         -:  353:      _GLIBCXX14_CONSTEXPR
         -:  354:      bool
-      130:  355:      operator()(const _Tp& __x, const _Tp& __y) const
-      130:  356:      { return __x == __y; }
+      162:  355:      operator()(const _Tp& __x, const _Tp& __y) const
+      162:  356:      { return __x == __y; }
         -:  357:    };
         -:  358:
         -:  359:  /// One of the @link comparison_functors comparison functors@endlink.

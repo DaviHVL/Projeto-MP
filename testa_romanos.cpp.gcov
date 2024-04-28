@@ -1,0 +1,71 @@
+        -:    0:Source:testa_romanos.cpp
+        -:    0:Programs:2
+        -:    1:#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
+        -:    2:#include "catch.hpp"
+        -:    3:#include "romanos.hpp"
+        -:    4:
+        3:    5:TEST_CASE( "Numeros romanos - algarismos inv�lidos", "[romanos]" ) {
+        1:    6:    REQUIRE( romanos_para_decimal("G") == -1 );
+        -:    7:
+        1:    8:    REQUIRE( romanos_para_decimal("i") == -1 );
+        -:    9:
+        1:   10:    REQUIRE( romanos_para_decimal("OP") == -1 );
+        -:   11:
+        1:   12:    REQUIRE( romanos_para_decimal("#") == -1 );
+        -:   13:
+        1:   14:    REQUIRE( romanos_para_decimal("8") == -1 );
+        1:   15:}
+        -:   16:
+        3:   17:TEST_CASE( "Numeros romanos - algarismos com vdl", "[romanos]" ) {
+        1:   18:    REQUIRE( romanos_para_decimal("VV") == -1 );
+        -:   19:
+        1:   20:    REQUIRE( romanos_para_decimal("LL") == -1 );
+        -:   21:
+        1:   22:    REQUIRE( romanos_para_decimal("DD") == -1 );
+        1:   23:}
+        -:   24:
+        3:   25:TEST_CASE( "Numeros romanos - algarismos com mais de vezes", "[romanos]" ) {
+        1:   26:    REQUIRE( romanos_para_decimal("XIIII") == -1 );
+        -:   27:
+        1:   28:    REQUIRE( romanos_para_decimal("XXXXX") == -1 );
+        -:   29:
+        1:   30:    REQUIRE( romanos_para_decimal("MMMM") == -1 );
+        -:   31:
+        1:   32:    REQUIRE( romanos_para_decimal("XIXIII") == -1 );
+        -:   33:
+        1:   34:    REQUIRE( romanos_para_decimal("LLLL") == -1 );
+        1:   35:}
+        -:   36:
+        3:   37:TEST_CASE( "Numeros romanos - algarismos com resultados", "[romanos]" ) {
+        1:   38:    REQUIRE( romanos_para_decimal("XII") == 12 );
+        -:   39:
+        1:   40:    REQUIRE( romanos_para_decimal("V") == 5 );
+        -:   41:
+        1:   42:    REQUIRE( romanos_para_decimal("CC") == 200 );
+        -:   43:
+        1:   44:    REQUIRE( romanos_para_decimal("XIV") == 14 );
+        -:   45:
+        1:   46:    REQUIRE( romanos_para_decimal("MD") == 1500 );
+        1:   47:}
+        -:   48:
+        3:   49:TEST_CASE( "Numeros romanos - casos certos e errados", "[romanos]" ) {
+        1:   50:    REQUIRE( romanos_para_decimal("III") == 3 );
+        -:   51:
+        1:   52:    REQUIRE( romanos_para_decimal("IX") == 9 );
+        -:   53:
+        1:   54:    REQUIRE( romanos_para_decimal("XIV") == 14 );
+        -:   55:
+        1:   56:    REQUIRE( romanos_para_decimal("LXVII") == 67 );
+        -:   57:
+        1:   58:    REQUIRE( romanos_para_decimal("XCIX") == 99 );
+        -:   59:
+        1:   60:    REQUIRE( romanos_para_decimal("IIII") == -1 );
+        -:   61:
+        1:   62:    REQUIRE( romanos_para_decimal("VX") == -1 );
+        -:   63:
+        1:   64:    REQUIRE( romanos_para_decimal("XIX") == 19 );
+        -:   65:
+        1:   66:    REQUIRE( romanos_para_decimal("LL") == -1 );
+        -:   67:
+        1:   68:    REQUIRE( romanos_para_decimal("DM") == -1 );
+        4:   69:}

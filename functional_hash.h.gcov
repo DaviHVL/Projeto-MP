@@ -49,7 +49,7 @@
         -:   47:   */
         -:   48:
         -:   49:  template<typename _Result, typename _Arg>
-        -:   50:    struct __hash_base
+       18:   50:    struct __hash_base
         -:   51:    {
         -:   52:      typedef _Result     result_type;
         -:   53:      typedef _Arg      argument_type;
@@ -110,7 +110,7 @@
         -:  108:  _Cxx_hashtable_define_trivial_hash(bool)
         -:  109:
         -:  110:  /// Explicit specialization for char.
-      562:  111:  _Cxx_hashtable_define_trivial_hash(char)
+      662:  111:  _Cxx_hashtable_define_trivial_hash(char)
         -:  112:
         -:  113:  /// Explicit specialization for signed char.
         -:  114:  _Cxx_hashtable_define_trivial_hash(signed char)

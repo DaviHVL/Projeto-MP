@@ -97,7 +97,7 @@
         -:   95:	   class _Hash = hash<_Key>,
         -:   96:	   class _Pred = std::equal_to<_Key>,
         -:   97:	   class _Alloc = std::allocator<std::pair<const _Key, _Tp> > >
-       24:   98:    class unordered_map
+       42:   98:    class unordered_map
         -:   99:    {
         -:  100:      typedef __umap_hashtable<_Key, _Tp, _Hash, _Pred, _Alloc>  _Hashtable;
         -:  101:      _Hashtable _M_h;
@@ -131,7 +131,7 @@
         -:  129:      //construct/destroy/copy
         -:  130:
         -:  131:      /// Default constructor.
-        -:  132:      unordered_map() = default;
+       18:  132:      unordered_map() = default;
         -:  133:
         -:  134:      /**
         -:  135:       *  @brief  Default constructor creates no elements.
@@ -315,8 +315,8 @@
         -:  313:       *  %unordered_map.
         -:  314:       */
         -:  315:      iterator
-        -:  316:      begin() noexcept
-        -:  317:      { return _M_h.begin(); }
+       18:  316:      begin() noexcept
+       18:  317:      { return _M_h.begin(); }
         -:  318:
         -:  319:      //@{
         -:  320:      /**
@@ -337,8 +337,8 @@
         -:  335:       *  the %unordered_map.
         -:  336:       */
         -:  337:      iterator
-        -:  338:      end() noexcept
-        -:  339:      { return _M_h.end(); }
+       18:  338:      end() noexcept
+       18:  339:      { return _M_h.end(); }
         -:  340:
         -:  341:      //@{
         -:  342:      /**
@@ -902,8 +902,8 @@
         -:  900:       *  Lookup requires constant time.
         -:  901:       */
         -:  902:      mapped_type&
-      106:  903:      operator[](const key_type& __k)
-      106:  904:      { return _M_h[__k]; }
+      165:  903:      operator[](const key_type& __k)
+      165:  904:      { return _M_h[__k]; }
         -:  905:
         -:  906:      mapped_type&
         -:  907:      operator[](key_type&& __k)

@@ -6,18 +6,32 @@ TEST_CASE( "Numeros romanos - algarismos inv�lidos", "[romanos]" ) {
     REQUIRE( romanos_para_decimal("G") == -1 );
 
     REQUIRE( romanos_para_decimal("i") == -1 );
+
+    REQUIRE( romanos_para_decimal("OP") == -1 );
+
+    REQUIRE( romanos_para_decimal("#") == -1 );
+
+    REQUIRE( romanos_para_decimal("8") == -1 );
 }
 
 TEST_CASE( "Numeros romanos - algarismos com vdl", "[romanos]" ) {
     REQUIRE( romanos_para_decimal("VV") == -1 );
 
     REQUIRE( romanos_para_decimal("LL") == -1 );
+
+    REQUIRE( romanos_para_decimal("DD") == -1 );
 }
 
 TEST_CASE( "Numeros romanos - algarismos com mais de vezes", "[romanos]" ) {
     REQUIRE( romanos_para_decimal("XIIII") == -1 );
 
     REQUIRE( romanos_para_decimal("XXXXX") == -1 );
+
+    REQUIRE( romanos_para_decimal("MMMM") == -1 );
+
+    REQUIRE( romanos_para_decimal("XIXIII") == -1 );
+
+    REQUIRE( romanos_para_decimal("LLLL") == -1 );
 }
 
 TEST_CASE( "Numeros romanos - algarismos com resultados", "[romanos]" ) {

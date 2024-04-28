@@ -46,10 +46,10 @@
         -:   44:   */
         -:   45:  template<typename _Tp>
         -:   46:    inline _Tp*
-     5870:   47:    __addressof(_Tp& __r) _GLIBCXX_NOEXCEPT
+     6000:   47:    __addressof(_Tp& __r) _GLIBCXX_NOEXCEPT
         -:   48:    {
         -:   49:      return reinterpret_cast<_Tp*>
-     5870:   50:	(&const_cast<char&>(reinterpret_cast<const volatile char&>(__r)));
+     6000:   50:	(&const_cast<char&>(reinterpret_cast<const volatile char&>(__r)));
         -:   51:    }
         -:   52:
         -:   53:_GLIBCXX_END_NAMESPACE_VERSION
@@ -75,8 +75,8 @@
         -:   73:   */
         -:   74:  template<typename _Tp>
         -:   75:    constexpr _Tp&&
-     5848:   76:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
-     5848:   77:    { return static_cast<_Tp&&>(__t); }
+     6318:   76:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
+     6318:   77:    { return static_cast<_Tp&&>(__t); }
         -:   78:
         -:   79:  /**
         -:   80:   *  @brief  Forward an rvalue.
@@ -134,8 +134,8 @@
         -:  132:  */
         -:  133:  template<typename _Tp>
         -:  134:    inline _Tp*
-      216:  135:    addressof(_Tp& __r) noexcept
-      216:  136:    { return std::__addressof(__r); }
+      281:  135:    addressof(_Tp& __r) noexcept
+      281:  136:    { return std::__addressof(__r); }
         -:  137:
         -:  138:  // C++11 version of std::exchange for internal use.
         -:  139:  template <typename _Tp, typename _Up = _Tp>

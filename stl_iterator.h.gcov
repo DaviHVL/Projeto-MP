@@ -788,18 +788,18 @@
         -:  786:
         -:  787:      // Forward iterator requirements
         -:  788:      reference
-     2499:  789:      operator*() const _GLIBCXX_NOEXCEPT
-     2499:  790:      { return *_M_current; }
+     2577:  789:      operator*() const _GLIBCXX_NOEXCEPT
+     2577:  790:      { return *_M_current; }
         -:  791:
         -:  792:      pointer
     #####:  793:      operator->() const _GLIBCXX_NOEXCEPT
     #####:  794:      { return _M_current; }
         -:  795:
         -:  796:      __normal_iterator&
-     2497:  797:      operator++() _GLIBCXX_NOEXCEPT
+     2572:  797:      operator++() _GLIBCXX_NOEXCEPT
         -:  798:      {
-     2497:  799:	++_M_current;
-     2497:  800:	return *this;
+     2572:  799:	++_M_current;
+     2572:  800:	return *this;
         -:  801:      }
         -:  802:
         -:  803:      __normal_iterator
@@ -840,8 +840,8 @@
     #####:  838:      { return __normal_iterator(_M_current - __n); }
         -:  839:
         -:  840:      const _Iterator&
-     7114:  841:      base() const _GLIBCXX_NOEXCEPT
-     7114:  842:      { return _M_current; }
+     7314:  841:      base() const _GLIBCXX_NOEXCEPT
+     7314:  842:      { return _M_current; }
         -:  843:    };
         -:  844:
         -:  845:  // Note: In what follows, the left- and right-hand-side iterators are
@@ -876,10 +876,10 @@
         -:  874:
         -:  875:  template<typename _Iterator, typename _Container>
         -:  876:    inline bool
-     3470:  877:    operator!=(const __normal_iterator<_Iterator, _Container>& __lhs,
+     3570:  877:    operator!=(const __normal_iterator<_Iterator, _Container>& __lhs,
         -:  878:	       const __normal_iterator<_Iterator, _Container>& __rhs)
         -:  879:    _GLIBCXX_NOEXCEPT
-     3470:  880:    { return __lhs.base() != __rhs.base(); }
+     3570:  880:    { return __lhs.base() != __rhs.base(); }
         -:  881:
         -:  882:  // Random access iterator requirements
         -:  883:  template<typename _IteratorL, typename _IteratorR, typename _Container>

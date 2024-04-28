@@ -106,8 +106,8 @@
         3:  104:      constexpr _Head_base()
         3:  105:      : _M_head_impl() { }
         -:  106:
-    #####:  107:      constexpr _Head_base(const _Head& __h)
-    #####:  108:      : _M_head_impl(__h) { }
+       70:  107:      constexpr _Head_base(const _Head& __h)
+       70:  108:      : _M_head_impl(__h) { }
         -:  109:
         -:  110:      constexpr _Head_base(const _Head_base&) = default;
         -:  111:      constexpr _Head_base(_Head_base&&) = default;
@@ -141,10 +141,10 @@
         -:  139:	: _M_head_impl(std::forward<_UHead>(__uhead), *__a._M_a) { }
         -:  140:
         -:  141:      static constexpr _Head&
-       10:  142:      _M_head(_Head_base& __b) noexcept { return __b._M_head_impl; }
+       80:  142:      _M_head(_Head_base& __b) noexcept { return __b._M_head_impl; }
         -:  143:
         -:  144:      static constexpr const _Head&
-       64:  145:      _M_head(const _Head_base& __b) noexcept { return __b._M_head_impl; }
+       71:  145:      _M_head(const _Head_base& __b) noexcept { return __b._M_head_impl; }
         -:  146:
         -:  147:      _Head _M_head_impl;
         -:  148:    };
@@ -192,7 +192,7 @@
        10:  190:      _M_head(_Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
         -:  191:
         -:  192:      static constexpr const _Head&
-       64:  193:      _M_head(const _Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
+       71:  193:      _M_head(const _Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
         -:  194:
         -:  195:      static constexpr _Inherited&
         -:  196:      _M_tail(_Tuple_impl& __t) noexcept { return __t; }
@@ -345,7 +345,7 @@
         -:  343:      typedef _Head_base<_Idx, _Head, __empty_not_final<_Head>::value> _Base;
         -:  344:
         -:  345:      static constexpr _Head&
-        5:  346:      _M_head(_Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
+       75:  346:      _M_head(_Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
         -:  347:
         -:  348:      static constexpr const _Head&
         -:  349:      _M_head(const _Tuple_impl& __t) noexcept { return _Base::_M_head(__t); }
@@ -354,8 +354,8 @@
         3:  352:      : _Base() { }
         -:  353:
         -:  354:      explicit
-    #####:  355:      constexpr _Tuple_impl(const _Head& __head)
-    #####:  356:      : _Base(__head) { }
+       35:  355:      constexpr _Tuple_impl(const _Head& __head)
+       35:  356:      : _Base(__head) { }
         -:  357:
         -:  358:      template<typename _UHead>
         -:  359:        explicit
@@ -365,9 +365,9 @@
         -:  363:      constexpr _Tuple_impl(const _Tuple_impl&) = default;
         -:  364:
         -:  365:      constexpr
-    #####:  366:      _Tuple_impl(_Tuple_impl&& __in)
+       35:  366:      _Tuple_impl(_Tuple_impl&& __in)
         -:  367:      noexcept(is_nothrow_move_constructible<_Head>::value)
-    #####:  368:      : _Base(std::forward<_Head>(_M_head(__in))) { }
+       35:  368:      : _Base(std::forward<_Head>(_M_head(__in))) { }
         -:  369:
         -:  370:      template<typename _UHead>
         -:  371:        constexpr _Tuple_impl(const _Tuple_impl<_Idx, _UHead>& __in)
@@ -605,8 +605,8 @@
         -:  603:                   _ImplicitlyConvertibleTuple<_Elements...>()
         -:  604:                 && (sizeof...(_Elements) >= 1),
         -:  605:               bool>::type=true>
-    #####:  606:        constexpr tuple(const _Elements&... __elements)
-    #####:  607:      : _Inherited(__elements...) { }
+       35:  606:        constexpr tuple(const _Elements&... __elements)
+       35:  607:      : _Inherited(__elements...) { }
         -:  608:
         -:  609:      template<typename _Dummy = void,
         -:  610:               typename enable_if<
@@ -653,7 +653,7 @@
         -:  651:
         -:  652:      constexpr tuple(const tuple&) = default;
         -:  653:
-    #####:  654:      constexpr tuple(tuple&&) = default; 
+       35:  654:      constexpr tuple(tuple&&) = default; 
         -:  655:
         -:  656:      // Shortcut for the cases where constructors taking tuples
         -:  657:      // must avoid creating temporaries.
@@ -1242,25 +1242,25 @@
         -: 1240:
         -: 1241:  template<std::size_t __i, typename _Head, typename... _Tail>
         -: 1242:    constexpr _Head&
-       15: 1243:    __get_helper(_Tuple_impl<__i, _Head, _Tail...>& __t) noexcept
-       15: 1244:    { return _Tuple_impl<__i, _Head, _Tail...>::_M_head(__t); }
+       50: 1243:    __get_helper(_Tuple_impl<__i, _Head, _Tail...>& __t) noexcept
+       50: 1244:    { return _Tuple_impl<__i, _Head, _Tail...>::_M_head(__t); }
         -: 1245:
         -: 1246:  template<std::size_t __i, typename _Head, typename... _Tail>
         -: 1247:    constexpr const _Head&
-       64: 1248:    __get_helper(const _Tuple_impl<__i, _Head, _Tail...>& __t) noexcept
-       64: 1249:    { return _Tuple_impl<__i, _Head, _Tail...>::_M_head(__t); }
+       71: 1248:    __get_helper(const _Tuple_impl<__i, _Head, _Tail...>& __t) noexcept
+       71: 1249:    { return _Tuple_impl<__i, _Head, _Tail...>::_M_head(__t); }
         -: 1250:
         -: 1251:  /// Return a reference to the ith element of a tuple.
         -: 1252:  template<std::size_t __i, typename... _Elements>
         -: 1253:    constexpr __tuple_element_t<__i, tuple<_Elements...>>&
-       15: 1254:    get(tuple<_Elements...>& __t) noexcept
-       15: 1255:    { return std::__get_helper<__i>(__t); }
+       50: 1254:    get(tuple<_Elements...>& __t) noexcept
+       50: 1255:    { return std::__get_helper<__i>(__t); }
         -: 1256:
         -: 1257:  /// Return a const reference to the ith element of a const tuple.
         -: 1258:  template<std::size_t __i, typename... _Elements>
         -: 1259:    constexpr const __tuple_element_t<__i, tuple<_Elements...>>&
-       64: 1260:    get(const tuple<_Elements...>& __t) noexcept
-       64: 1261:    { return std::__get_helper<__i>(__t); }
+       71: 1260:    get(const tuple<_Elements...>& __t) noexcept
+       71: 1261:    { return std::__get_helper<__i>(__t); }
         -: 1262:
         -: 1263:  /// Return an rvalue reference to the ith element of a tuple rvalue.
         -: 1264:  template<std::size_t __i, typename... _Elements>
@@ -1569,24 +1569,24 @@
         -: 1567:  template<class _T1, class _T2>
         -: 1568:    template<typename... _Args1, typename... _Args2>
         -: 1569:      inline
-    #####: 1570:      pair<_T1, _T2>::
+       35: 1570:      pair<_T1, _T2>::
         -: 1571:      pair(piecewise_construct_t,
         -: 1572:	   tuple<_Args1...> __first, tuple<_Args2...> __second)
         -: 1573:      : pair(__first, __second,
         -: 1574:	     typename _Build_index_tuple<sizeof...(_Args1)>::__type(),
-    #####: 1575:	     typename _Build_index_tuple<sizeof...(_Args2)>::__type())
-    #####: 1576:      { }
+       35: 1575:	     typename _Build_index_tuple<sizeof...(_Args2)>::__type())
+       35: 1576:      { }
         -: 1577:
         -: 1578:  template<class _T1, class _T2>
         -: 1579:    template<typename... _Args1, std::size_t... _Indexes1,
         -: 1580:             typename... _Args2, std::size_t... _Indexes2>
         -: 1581:      inline
-    #####: 1582:      pair<_T1, _T2>::
+       35: 1582:      pair<_T1, _T2>::
         -: 1583:      pair(tuple<_Args1...>& __tuple1, tuple<_Args2...>& __tuple2,
         -: 1584:	   _Index_tuple<_Indexes1...>, _Index_tuple<_Indexes2...>)
-    #####: 1585:      : first(std::forward<_Args1>(std::get<_Indexes1>(__tuple1))...),
-    #####: 1586:        second(std::forward<_Args2>(std::get<_Indexes2>(__tuple2))...)
-    #####: 1587:      { }
+       35: 1585:      : first(std::forward<_Args1>(std::get<_Indexes1>(__tuple1))...),
+       35: 1586:        second(std::forward<_Args2>(std::get<_Indexes2>(__tuple2))...)
+       35: 1587:      { }
         -: 1588:
         -: 1589:  /// @}
         -: 1590:

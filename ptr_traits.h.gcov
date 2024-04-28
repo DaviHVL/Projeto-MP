@@ -139,8 +139,8 @@
         -:  137:       *  @return @c addressof(__r)
         -:  138:      */
         -:  139:      static pointer
-      216:  140:      pointer_to(__make_not_void<element_type>& __r) noexcept
-      216:  141:      { return std::addressof(__r); }
+      281:  140:      pointer_to(__make_not_void<element_type>& __r) noexcept
+      281:  141:      { return std::addressof(__r); }
         -:  142:    };
         -:  143:
         -:  144:  /// Convenience alias for rebinding pointers.

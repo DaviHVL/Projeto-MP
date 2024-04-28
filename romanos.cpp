@@ -63,13 +63,14 @@ Implementação da função para verificar
 se uma letra aparece mais de três vezes seguidas.
 */
 bool verificador_mais(const string& num_romano) {
-    if (num_romano.length() < 4) {
-            return true;
+    unordered_map<char, int> contador;
+
+    for (char c : num_romano) {
+        contador[c]++;
     }
-    for (size_t i =0; i <= (num_romano.length()-4); i++) {
-        if (num_romano[i] == num_romano[i+1] &&
-             num_romano[i+1] == num_romano[i+2] &&
-              num_romano[i+2] == num_romano[i+3]) {
+
+    for (const auto& par : contador) {
+        if (par.second > 3) {
             return false;
         }
     }
