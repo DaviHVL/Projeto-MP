@@ -326,8 +326,8 @@
         -:  324:      __bucket_type		_M_single_bucket	= nullptr;
         -:  325:
         -:  326:      bool
-       10:  327:      _M_uses_single_bucket(__bucket_type* __bkts) const
-       10:  328:      { return __builtin_expect(__bkts == &_M_single_bucket, false); }
+       48:  327:      _M_uses_single_bucket(__bucket_type* __bkts) const
+       48:  328:      { return __builtin_expect(__bkts == &_M_single_bucket, false); }
         -:  329:
         -:  330:      bool
         -:  331:      _M_uses_single_bucket() const
@@ -337,29 +337,29 @@
         -:  335:      _M_base_alloc() { return *this; }
         -:  336:
         -:  337:      __bucket_type*
-       10:  338:      _M_allocate_buckets(size_type __n)
+       48:  338:      _M_allocate_buckets(size_type __n)
         -:  339:      {
-       10:  340:	if (__builtin_expect(__n == 1, false))
+       48:  340:	if (__builtin_expect(__n == 1, false))
         -:  341:	  {
     #####:  342:	    _M_single_bucket = nullptr;
     #####:  343:	    return &_M_single_bucket;
         -:  344:	  }
         -:  345:
-       10:  346:	return __hashtable_alloc::_M_allocate_buckets(__n);
+       48:  346:	return __hashtable_alloc::_M_allocate_buckets(__n);
         -:  347:      }
         -:  348:
         -:  349:      void
-       10:  350:      _M_deallocate_buckets(__bucket_type* __bkts, size_type __n)
+       48:  350:      _M_deallocate_buckets(__bucket_type* __bkts, size_type __n)
         -:  351:      {
-       10:  352:	if (_M_uses_single_bucket(__bkts))
+       48:  352:	if (_M_uses_single_bucket(__bkts))
     #####:  353:	  return;
         -:  354:
-       10:  355:	__hashtable_alloc::_M_deallocate_buckets(__bkts, __n);
+       48:  355:	__hashtable_alloc::_M_deallocate_buckets(__bkts, __n);
         -:  356:      }
         -:  357:
         -:  358:      void
-       10:  359:      _M_deallocate_buckets()
-       10:  360:      { _M_deallocate_buckets(_M_buckets, _M_bucket_count); }
+       48:  359:      _M_deallocate_buckets()
+       48:  360:      { _M_deallocate_buckets(_M_buckets, _M_bucket_count); }
         -:  361:
         -:  362:      // Gets bucket begin, deals with the fact that non-empty buckets contain
         -:  363:      // their before begin node.
@@ -367,8 +367,8 @@
         -:  365:      _M_bucket_begin(size_type __bkt) const;
         -:  366:
         -:  367:      __node_type*
-       10:  368:      _M_begin() const
-       10:  369:      { return static_cast<__node_type*>(_M_before_begin._M_nxt); }
+       48:  368:      _M_begin() const
+       48:  369:      { return static_cast<__node_type*>(_M_before_begin._M_nxt); }
         -:  370:
         -:  371:      template<typename _NodeGenerator>
         -:  372:	void
@@ -383,12 +383,12 @@
         -:  381:      void
         -:  382:      _M_reset() noexcept;
         -:  383:
-        5:  384:      _Hashtable(const _H1& __h1, const _H2& __h2, const _Hash& __h,
+       24:  384:      _Hashtable(const _H1& __h1, const _H2& __h2, const _Hash& __h,
         -:  385:		 const _Equal& __eq, const _ExtractKey& __exk,
         -:  386:		 const allocator_type& __a)
         -:  387:	: __hashtable_base(__exk, __h1, __h2, __h, __eq),
-        5:  388:	  __hashtable_alloc(__node_alloc_type(__a))
-        5:  389:      { }
+       24:  388:	  __hashtable_alloc(__node_alloc_type(__a))
+       24:  389:      { }
         -:  390:
         -:  391:    public:
         -:  392:      // Constructor, destructor, assignment, swap
@@ -438,14 +438,14 @@
         -:  436:		     __key_extract(), __a)
         -:  437:	{ }
         -:  438:
-        5:  439:      _Hashtable(initializer_list<value_type> __l,
+       24:  439:      _Hashtable(initializer_list<value_type> __l,
         -:  440:		 size_type __n = 0,
         -:  441:		 const _H1& __hf = _H1(),
         -:  442:		 const key_equal& __eql = key_equal(),
         -:  443:		 const allocator_type& __a = allocator_type())
         -:  444:      : _Hashtable(__l.begin(), __l.end(), __n, __hf, _H2(), _Hash(), __eql,
-        5:  445:		   __key_extract(), __a)
-        5:  446:      { }
+       24:  445:		   __key_extract(), __a)
+       24:  446:      { }
         -:  447:
         -:  448:      _Hashtable&
         -:  449:      operator=(const _Hashtable& __ht);
@@ -617,12 +617,12 @@
         -:  615:    protected:
         -:  616:      // Bucket index computation helpers.
         -:  617:      size_type
-       30:  618:      _M_bucket_index(__node_type* __n) const noexcept
-       30:  619:      { return __hash_code_base::_M_bucket_index(__n, _M_bucket_count); }
+      144:  618:      _M_bucket_index(__node_type* __n) const noexcept
+      144:  619:      { return __hash_code_base::_M_bucket_index(__n, _M_bucket_count); }
         -:  620:
         -:  621:      size_type
-       63:  622:      _M_bucket_index(const key_type& __k, __hash_code __c) const
-       63:  623:      { return __hash_code_base::_M_bucket_index(__k, __c, _M_bucket_count); }
+      298:  622:      _M_bucket_index(const key_type& __k, __hash_code __c) const
+      298:  623:      { return __hash_code_base::_M_bucket_index(__k, __c, _M_bucket_count); }
         -:  624:
         -:  625:      // Find and insert helper functions and types
         -:  626:      // Find the node before the one matching the criteria.
@@ -630,13 +630,13 @@
         -:  628:      _M_find_before_node(size_type, const key_type&, __hash_code) const;
         -:  629:
         -:  630:      __node_type*
-       58:  631:      _M_find_node(size_type __bkt, const key_type& __key,
+      274:  631:      _M_find_node(size_type __bkt, const key_type& __key,
         -:  632:		   __hash_code __c) const
         -:  633:      {
-       58:  634:	__node_base* __before_n = _M_find_before_node(__bkt, __key, __c);
-       58:  635:	if (__before_n)
-       23:  636:	  return static_cast<__node_type*>(__before_n->_M_nxt);
-       35:  637:	return nullptr;
+      274:  634:	__node_base* __before_n = _M_find_before_node(__bkt, __key, __c);
+      274:  635:	if (__before_n)
+      106:  636:	  return static_cast<__node_type*>(__before_n->_M_nxt);
+      168:  637:	return nullptr;
         -:  638:      }
         -:  639:
         -:  640:      // Insert a node at the beginning of a bucket.
@@ -817,31 +817,31 @@
         -:  815:	   typename _H1, typename _H2, typename _Hash, typename _RehashPolicy,
         -:  816:	   typename _Traits>
         -:  817:    template<typename _InputIterator>
-        5:  818:      _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+       24:  818:      _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
         -:  819:		 _H1, _H2, _Hash, _RehashPolicy, _Traits>::
         -:  820:      _Hashtable(_InputIterator __f, _InputIterator __l,
         -:  821:		 size_type __bucket_hint,
         -:  822:		 const _H1& __h1, const _H2& __h2, const _Hash& __h,
         -:  823:		 const _Equal& __eq, const _ExtractKey& __exk,
         -:  824:		 const allocator_type& __a)
-        5:  825:	: _Hashtable(__h1, __h2, __h, __eq, __exk, __a)
+       24:  825:	: _Hashtable(__h1, __h2, __h, __eq, __exk, __a)
         -:  826:      {
-        5:  827:	auto __nb_elems = __detail::__distance_fw(__f, __l);
+       24:  827:	auto __nb_elems = __detail::__distance_fw(__f, __l);
         -:  828:	auto __bkt_count =
         -:  829:	  _M_rehash_policy._M_next_bkt(
-       10:  830:	    std::max(_M_rehash_policy._M_bkt_for_elements(__nb_elems),
-        5:  831:		     __bucket_hint));
+       48:  830:	    std::max(_M_rehash_policy._M_bkt_for_elements(__nb_elems),
+       24:  831:		     __bucket_hint));
         -:  832:
-        5:  833:	if (__bkt_count > _M_bucket_count)
+       24:  833:	if (__bkt_count > _M_bucket_count)
         -:  834:	  {
-        5:  835:	    _M_buckets = _M_allocate_buckets(__bkt_count);
-        5:  836:	    _M_bucket_count = __bkt_count;
+       24:  835:	    _M_buckets = _M_allocate_buckets(__bkt_count);
+       24:  836:	    _M_bucket_count = __bkt_count;
         -:  837:	  }
         -:  838:
         -:  839:	__try
         -:  840:	  {
-       75:  841:	    for (; __f != __l; ++__f)
-       35:  842:	      this->insert(*__f);
+      360:  841:	    for (; __f != __l; ++__f)
+      168:  842:	      this->insert(*__f);
         -:  843:	  }
     =====:  844:	__catch(...)
         -:  845:	  {
@@ -849,7 +849,7 @@
     =====:  847:	    _M_deallocate_buckets();
     =====:  848:	    __throw_exception_again;
         -:  849:	  }
-        5:  850:      }
+       24:  850:      }
         -:  851:
         -:  852:  template<typename _Key, typename _Value,
         -:  853:	   typename _Alloc, typename _ExtractKey, typename _Equal,
@@ -1222,13 +1222,13 @@
         -: 1220:	   typename _Alloc, typename _ExtractKey, typename _Equal,
         -: 1221:	   typename _H1, typename _H2, typename _Hash, typename _RehashPolicy,
         -: 1222:	   typename _Traits>
-        5: 1223:    _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+       24: 1223:    _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
         -: 1224:	       _H1, _H2, _Hash, _RehashPolicy, _Traits>::
         -: 1225:    ~_Hashtable() noexcept
         -: 1226:    {
-        5: 1227:      clear();
-        5: 1228:      _M_deallocate_buckets();
-        5: 1229:    }
+       24: 1227:      clear();
+       24: 1228:      _M_deallocate_buckets();
+       24: 1229:    }
         -: 1230:
         -: 1231:  template<typename _Key, typename _Value,
         -: 1232:	   typename _Alloc, typename _ExtractKey, typename _Equal,
@@ -1406,27 +1406,27 @@
         -: 1404:	   typename _H1, typename _H2, typename _Hash, typename _RehashPolicy,
         -: 1405:	   typename _Traits>
         -: 1406:    auto
-       58: 1407:    _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+      274: 1407:    _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
         -: 1408:	       _H1, _H2, _Hash, _RehashPolicy, _Traits>::
         -: 1409:    _M_find_before_node(size_type __n, const key_type& __k,
         -: 1410:			__hash_code __code) const
         -: 1411:    -> __node_base*
         -: 1412:    {
-       58: 1413:      __node_base* __prev_p = _M_buckets[__n];
-       58: 1414:      if (!__prev_p)
-       30: 1415:	return nullptr;
+      274: 1413:      __node_base* __prev_p = _M_buckets[__n];
+      274: 1414:      if (!__prev_p)
+      144: 1415:	return nullptr;
         -: 1416:
-       28: 1417:      for (__node_type* __p = static_cast<__node_type*>(__prev_p->_M_nxt);;
+      130: 1417:      for (__node_type* __p = static_cast<__node_type*>(__prev_p->_M_nxt);;
         -: 1418:	   __p = __p->_M_next())
         -: 1419:	{
-       28: 1420:	  if (this->_M_equals(__k, __code, __p))
-       23: 1421:	    return __prev_p;
+      130: 1420:	  if (this->_M_equals(__k, __code, __p))
+      106: 1421:	    return __prev_p;
         -: 1422:
-        5: 1423:	  if (!__p->_M_nxt || _M_bucket_index(__p->_M_next()) != __n)
-        5: 1424:	    break;
+       24: 1423:	  if (!__p->_M_nxt || _M_bucket_index(__p->_M_next()) != __n)
+       24: 1424:	    break;
     #####: 1425:	  __prev_p = __p;
         -: 1426:	}
-        5: 1427:      return nullptr;
+       24: 1427:      return nullptr;
         -: 1428:    }
         -: 1429:
         -: 1430:  template<typename _Key, typename _Value,
@@ -1434,31 +1434,31 @@
         -: 1432:	   typename _H1, typename _H2, typename _Hash, typename _RehashPolicy,
         -: 1433:	   typename _Traits>
         -: 1434:    void
-       35: 1435:    _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+      168: 1435:    _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
         -: 1436:	       _H1, _H2, _Hash, _RehashPolicy, _Traits>::
         -: 1437:    _M_insert_bucket_begin(size_type __bkt, __node_type* __node)
         -: 1438:    {
-       35: 1439:      if (_M_buckets[__bkt])
+      168: 1439:      if (_M_buckets[__bkt])
         -: 1440:	{
         -: 1441:	  // Bucket is not empty, we just need to insert the new node
         -: 1442:	  // after the bucket before begin.
-        5: 1443:	  __node->_M_nxt = _M_buckets[__bkt]->_M_nxt;
-        5: 1444:	  _M_buckets[__bkt]->_M_nxt = __node;
+       24: 1443:	  __node->_M_nxt = _M_buckets[__bkt]->_M_nxt;
+       24: 1444:	  _M_buckets[__bkt]->_M_nxt = __node;
         -: 1445:	}
         -: 1446:      else
         -: 1447:	{
         -: 1448:	  // The bucket is empty, the new node is inserted at the
         -: 1449:	  // beginning of the singly-linked list and the bucket will
         -: 1450:	  // contain _M_before_begin pointer.
-       30: 1451:	  __node->_M_nxt = _M_before_begin._M_nxt;
-       30: 1452:	  _M_before_begin._M_nxt = __node;
-       30: 1453:	  if (__node->_M_nxt)
+      144: 1451:	  __node->_M_nxt = _M_before_begin._M_nxt;
+      144: 1452:	  _M_before_begin._M_nxt = __node;
+      144: 1453:	  if (__node->_M_nxt)
         -: 1454:	    // We must update former begin bucket that is pointing to
         -: 1455:	    // _M_before_begin.
-       25: 1456:	    _M_buckets[_M_bucket_index(__node->_M_next())] = __node;
-       30: 1457:	  _M_buckets[__bkt] = &_M_before_begin;
+      120: 1456:	    _M_buckets[_M_bucket_index(__node->_M_next())] = __node;
+      144: 1457:	  _M_buckets[__bkt] = &_M_before_begin;
         -: 1458:	}
-       35: 1459:    }
+      168: 1459:    }
         -: 1460:
         -: 1461:  template<typename _Key, typename _Value,
         -: 1462:	   typename _Alloc, typename _ExtractKey, typename _Equal,
@@ -1572,30 +1572,30 @@
         -: 1570:	   typename _H1, typename _H2, typename _Hash, typename _RehashPolicy,
         -: 1571:	   typename _Traits>
         -: 1572:    auto
-       35: 1573:    _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+      168: 1573:    _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
         -: 1574:	       _H1, _H2, _Hash, _RehashPolicy, _Traits>::
         -: 1575:    _M_insert_unique_node(size_type __bkt, __hash_code __code,
         -: 1576:			  __node_type* __node)
         -: 1577:    -> iterator
         -: 1578:    {
-       35: 1579:      const __rehash_state& __saved_state = _M_rehash_policy._M_state();
+      168: 1579:      const __rehash_state& __saved_state = _M_rehash_policy._M_state();
         -: 1580:      std::pair<bool, std::size_t> __do_rehash
-       35: 1581:	= _M_rehash_policy._M_need_rehash(_M_bucket_count, _M_element_count, 1);
+      168: 1581:	= _M_rehash_policy._M_need_rehash(_M_bucket_count, _M_element_count, 1);
         -: 1582:
         -: 1583:      __try
         -: 1584:	{
-       35: 1585:	  if (__do_rehash.first)
+      168: 1585:	  if (__do_rehash.first)
         -: 1586:	    {
-        5: 1587:	      _M_rehash(__do_rehash.second, __saved_state);
-        5: 1588:	      __bkt = _M_bucket_index(this->_M_extract()(__node->_M_v()), __code);
+       24: 1587:	      _M_rehash(__do_rehash.second, __saved_state);
+       24: 1588:	      __bkt = _M_bucket_index(this->_M_extract()(__node->_M_v()), __code);
         -: 1589:	    }
         -: 1590:
-       35: 1591:	  this->_M_store_code(__node, __code);
+      168: 1591:	  this->_M_store_code(__node, __code);
         -: 1592:
         -: 1593:	  // Always insert at the beginning of the bucket.
-       35: 1594:	  _M_insert_bucket_begin(__bkt, __node);
-       35: 1595:	  ++_M_element_count;
-       35: 1596:	  return iterator(__node);
+      168: 1594:	  _M_insert_bucket_begin(__bkt, __node);
+      168: 1595:	  ++_M_element_count;
+      168: 1596:	  return iterator(__node);
         -: 1597:	}
     =====: 1598:      __catch(...)
         -: 1599:	{
@@ -1676,21 +1676,21 @@
         -: 1674:	   typename _Traits>
         -: 1675:    template<typename _Arg, typename _NodeGenerator>
         -: 1676:      auto
-       35: 1677:      _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+      168: 1677:      _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
         -: 1678:		 _H1, _H2, _Hash, _RehashPolicy, _Traits>::
         -: 1679:      _M_insert(_Arg&& __v, const _NodeGenerator& __node_gen, std::true_type)
         -: 1680:      -> pair<iterator, bool>
         -: 1681:      {
-       35: 1682:	const key_type& __k = this->_M_extract()(__v);
-       35: 1683:	__hash_code __code = this->_M_hash_code(__k);
-       35: 1684:	size_type __bkt = _M_bucket_index(__k, __code);
+      168: 1682:	const key_type& __k = this->_M_extract()(__v);
+      168: 1683:	__hash_code __code = this->_M_hash_code(__k);
+      168: 1684:	size_type __bkt = _M_bucket_index(__k, __code);
         -: 1685:
-       35: 1686:	__node_type* __n = _M_find_node(__bkt, __k, __code);
-       35: 1687:	if (__n)
+      168: 1686:	__node_type* __n = _M_find_node(__bkt, __k, __code);
+      168: 1687:	if (__n)
     #####: 1688:	  return std::make_pair(iterator(__n), false);
         -: 1689:
-       35: 1690:	__n = __node_gen(std::forward<_Arg>(__v));
-       35: 1691:	return std::make_pair(_M_insert_unique_node(__bkt, __code, __n), true);
+      168: 1690:	__n = __node_gen(std::forward<_Arg>(__v));
+      168: 1691:	return std::make_pair(_M_insert_unique_node(__bkt, __code, __n), true);
         -: 1692:      }
         -: 1693:
         -: 1694:  // Insert v unconditionally.
@@ -1896,15 +1896,15 @@
         -: 1894:	   typename _H1, typename _H2, typename _Hash, typename _RehashPolicy,
         -: 1895:	   typename _Traits>
         -: 1896:    void
-        5: 1897:    _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+       24: 1897:    _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
         -: 1898:	       _H1, _H2, _Hash, _RehashPolicy, _Traits>::
         -: 1899:    clear() noexcept
         -: 1900:    {
-        5: 1901:      this->_M_deallocate_nodes(_M_begin());
-        5: 1902:      __builtin_memset(_M_buckets, 0, _M_bucket_count * sizeof(__bucket_type));
-        5: 1903:      _M_element_count = 0;
-        5: 1904:      _M_before_begin._M_nxt = nullptr;
-        5: 1905:    }
+       24: 1901:      this->_M_deallocate_nodes(_M_begin());
+       24: 1902:      __builtin_memset(_M_buckets, 0, _M_bucket_count * sizeof(__bucket_type));
+       24: 1903:      _M_element_count = 0;
+       24: 1904:      _M_before_begin._M_nxt = nullptr;
+       24: 1905:    }
         -: 1906:
         -: 1907:  template<typename _Key, typename _Value,
         -: 1908:	   typename _Alloc, typename _ExtractKey, typename _Equal,
@@ -1933,13 +1933,13 @@
         -: 1931:	   typename _H1, typename _H2, typename _Hash, typename _RehashPolicy,
         -: 1932:	   typename _Traits>
         -: 1933:    void
-        5: 1934:    _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+       24: 1934:    _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
         -: 1935:	       _H1, _H2, _Hash, _RehashPolicy, _Traits>::
         -: 1936:    _M_rehash(size_type __n, const __rehash_state& __state)
         -: 1937:    {
         -: 1938:      __try
         -: 1939:	{
-        5: 1940:	  _M_rehash_aux(__n, __unique_keys());
+       24: 1940:	  _M_rehash_aux(__n, __unique_keys());
         -: 1941:	}
     =====: 1942:      __catch(...)
         -: 1943:	{
@@ -1948,7 +1948,7 @@
     =====: 1946:	  _M_rehash_policy._M_reset(__state);
     =====: 1947:	  __throw_exception_again;
         -: 1948:	}
-        5: 1949:    }
+       24: 1949:    }
         -: 1950:
         -: 1951:  // Rehash when there is no equivalent elements.
         -: 1952:  template<typename _Key, typename _Value,
@@ -1956,39 +1956,39 @@
         -: 1954:	   typename _H1, typename _H2, typename _Hash, typename _RehashPolicy,
         -: 1955:	   typename _Traits>
         -: 1956:    void
-        5: 1957:    _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
+       24: 1957:    _Hashtable<_Key, _Value, _Alloc, _ExtractKey, _Equal,
         -: 1958:	       _H1, _H2, _Hash, _RehashPolicy, _Traits>::
         -: 1959:    _M_rehash_aux(size_type __n, std::true_type)
         -: 1960:    {
-        5: 1961:      __bucket_type* __new_buckets = _M_allocate_buckets(__n);
-        5: 1962:      __node_type* __p = _M_begin();
-        5: 1963:      _M_before_begin._M_nxt = nullptr;
-        5: 1964:      std::size_t __bbegin_bkt = 0;
-       65: 1965:      while (__p)
+       24: 1961:      __bucket_type* __new_buckets = _M_allocate_buckets(__n);
+       24: 1962:      __node_type* __p = _M_begin();
+       24: 1963:      _M_before_begin._M_nxt = nullptr;
+       24: 1964:      std::size_t __bbegin_bkt = 0;
+      312: 1965:      while (__p)
         -: 1966:	{
-       30: 1967:	  __node_type* __next = __p->_M_next();
-       30: 1968:	  std::size_t __bkt = __hash_code_base::_M_bucket_index(__p, __n);
-       30: 1969:	  if (!__new_buckets[__bkt])
+      144: 1967:	  __node_type* __next = __p->_M_next();
+      144: 1968:	  std::size_t __bkt = __hash_code_base::_M_bucket_index(__p, __n);
+      144: 1969:	  if (!__new_buckets[__bkt])
         -: 1970:	    {
-       30: 1971:	      __p->_M_nxt = _M_before_begin._M_nxt;
-       30: 1972:	      _M_before_begin._M_nxt = __p;
-       30: 1973:	      __new_buckets[__bkt] = &_M_before_begin;
-       30: 1974:	      if (__p->_M_nxt)
-       25: 1975:		__new_buckets[__bbegin_bkt] = __p;
-       30: 1976:	      __bbegin_bkt = __bkt;
+      144: 1971:	      __p->_M_nxt = _M_before_begin._M_nxt;
+      144: 1972:	      _M_before_begin._M_nxt = __p;
+      144: 1973:	      __new_buckets[__bkt] = &_M_before_begin;
+      144: 1974:	      if (__p->_M_nxt)
+      120: 1975:		__new_buckets[__bbegin_bkt] = __p;
+      144: 1976:	      __bbegin_bkt = __bkt;
         -: 1977:	    }
         -: 1978:	  else
         -: 1979:	    {
     #####: 1980:	      __p->_M_nxt = __new_buckets[__bkt]->_M_nxt;
     #####: 1981:	      __new_buckets[__bkt]->_M_nxt = __p;
         -: 1982:	    }
-       30: 1983:	  __p = __next;
+      144: 1983:	  __p = __next;
         -: 1984:	}
         -: 1985:
-        5: 1986:      _M_deallocate_buckets();
-        5: 1987:      _M_bucket_count = __n;
-        5: 1988:      _M_buckets = __new_buckets;
-        5: 1989:    }
+       24: 1986:      _M_deallocate_buckets();
+       24: 1987:      _M_bucket_count = __n;
+       24: 1988:      _M_buckets = __new_buckets;
+       24: 1989:    }
         -: 1990:
         -: 1991:  // Rehash when there can be equivalent elements, preserve their relative
         -: 1992:  // order.

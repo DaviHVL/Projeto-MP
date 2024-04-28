@@ -95,13 +95,13 @@
         -:   93:
         -:   94:  template<typename _RandomAccessIterator>
         -:   95:    inline typename iterator_traits<_RandomAccessIterator>::difference_type
-        7:   96:    __distance(_RandomAccessIterator __first, _RandomAccessIterator __last,
+       26:   96:    __distance(_RandomAccessIterator __first, _RandomAccessIterator __last,
         -:   97:               random_access_iterator_tag)
         -:   98:    {
         -:   99:      // concept requirements
         -:  100:      __glibcxx_function_requires(_RandomAccessIteratorConcept<
         -:  101:				  _RandomAccessIterator>)
-        7:  102:      return __last - __first;
+       26:  102:      return __last - __first;
         -:  103:    }
         -:  104:
         -:  105:#if _GLIBCXX_USE_CXX11_ABI
@@ -134,11 +134,11 @@
         -:  132:  */
         -:  133:  template<typename _InputIterator>
         -:  134:    inline typename iterator_traits<_InputIterator>::difference_type
-        7:  135:    distance(_InputIterator __first, _InputIterator __last)
+       26:  135:    distance(_InputIterator __first, _InputIterator __last)
         -:  136:    {
         -:  137:      // concept requirements -- taken care of in __distance
-        7:  138:      return std::__distance(__first, __last,
-       14:  139:			     std::__iterator_category(__first));
+       26:  138:      return std::__distance(__first, __last,
+       52:  139:			     std::__iterator_category(__first));
         -:  140:    }
         -:  141:
         -:  142:  template<typename _InputIterator, typename _Distance>

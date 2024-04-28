@@ -21,6 +21,11 @@ Função para verificar se há isso ocorre ou não.
 bool verificador_mais(const string& num_romano);
 
 /*
+Função para verificar se a subtração é válida.
+*/
+bool verificador_subtracoes(const string& num_romano);
+
+/*
 Função principal.
 */
 int romanos_para_decimal(const string& num_romano);

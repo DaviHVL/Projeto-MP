@@ -78,14 +78,14 @@
         -:   76:      typedef std::true_type propagate_on_container_move_assignment;
         -:   77:#endif
         -:   78:
-      321:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+      714:   79:      new_allocator() _GLIBCXX_USE_NOEXCEPT { }
         -:   80:
-     2351:   81:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
+     2410:   81:      new_allocator(const new_allocator&) _GLIBCXX_USE_NOEXCEPT { }
         -:   82:
         -:   83:      template<typename _Tp1>
         -:   84:        new_allocator(const new_allocator<_Tp1>&) _GLIBCXX_USE_NOEXCEPT { }
         -:   85:
-     2672:   86:      ~new_allocator() _GLIBCXX_USE_NOEXCEPT { }
+     3124:   86:      ~new_allocator() _GLIBCXX_USE_NOEXCEPT { }
         -:   87:
         -:   88:      pointer
         -:   89:      address(reference __x) const _GLIBCXX_NOEXCEPT
@@ -98,32 +98,32 @@
         -:   96:      // NB: __n is permitted to be 0.  The C++ standard says nothing
         -:   97:      // about what the return value is when __n == 0.
         -:   98:      pointer
-     1049:   99:      allocate(size_type __n, const void* = 0)
+     1238:   99:      allocate(size_type __n, const void* = 0)
         -:  100:      { 
-     1049:  101:	if (__n > this->max_size())
+     1238:  101:	if (__n > this->max_size())
     #####:  102:	  std::__throw_bad_alloc();
         -:  103:
-     1049:  104:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+     1238:  104:	return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
         -:  105:      }
         -:  106:
         -:  107:      // __p is not permitted to be a null pointer.
         -:  108:      void
-     1049:  109:      deallocate(pointer __p, size_type)
-     1049:  110:      { ::operator delete(__p); }
+     1238:  109:      deallocate(pointer __p, size_type)
+     1238:  110:      { ::operator delete(__p); }
         -:  111:
         -:  112:      size_type
-     1229:  113:      max_size() const _GLIBCXX_USE_NOEXCEPT
-     1229:  114:      { return size_t(-1) / sizeof(_Tp); }
+     1426:  113:      max_size() const _GLIBCXX_USE_NOEXCEPT
+     1426:  114:      { return size_t(-1) / sizeof(_Tp); }
         -:  115:
         -:  116:#if __cplusplus >= 201103L
         -:  117:      template<typename _Up, typename... _Args>
         -:  118:        void
-      184:  119:        construct(_Up* __p, _Args&&... __args)
-      184:  120:	{ ::new((void *)__p) _Up(std::forward<_Args>(__args)...); }
+      325:  119:        construct(_Up* __p, _Args&&... __args)
+      325:  120:	{ ::new((void *)__p) _Up(std::forward<_Args>(__args)...); }
         -:  121:
         -:  122:      template<typename _Up>
         -:  123:        void 
-       94:  124:        destroy(_Up* __p) { __p->~_Up(); }
+      231:  124:        destroy(_Up* __p) { __p->~_Up(); }
         -:  125:#else
         -:  126:      // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  127:      // 402. wrong new expression in [some_] allocator::construct

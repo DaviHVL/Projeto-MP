@@ -97,7 +97,7 @@
         -:   95:	   class _Hash = hash<_Key>,
         -:   96:	   class _Pred = std::equal_to<_Key>,
         -:   97:	   class _Alloc = std::allocator<std::pair<const _Key, _Tp> > >
-        5:   98:    class unordered_map
+       24:   98:    class unordered_map
         -:   99:    {
         -:  100:      typedef __umap_hashtable<_Key, _Tp, _Hash, _Pred, _Alloc>  _Hashtable;
         -:  101:      _Hashtable _M_h;
@@ -216,13 +216,13 @@
         -:  214:       *  Create an %unordered_map consisting of copies of the elements in the
         -:  215:       *  list. This is linear in N (where N is @a __l.size()).
         -:  216:       */
-        5:  217:      unordered_map(initializer_list<value_type> __l,
+       24:  217:      unordered_map(initializer_list<value_type> __l,
         -:  218:		    size_type __n = 0,
         -:  219:		    const hasher& __hf = hasher(),
         -:  220:		    const key_equal& __eql = key_equal(),
         -:  221:		    const allocator_type& __a = allocator_type())
-        5:  222:      : _M_h(__l, __n, __hf, __eql, __a)
-        5:  223:      { }
+       24:  222:      : _M_h(__l, __n, __hf, __eql, __a)
+       24:  223:      { }
         -:  224:
         -:  225:      unordered_map(size_type __n, const allocator_type& __a)
         -:  226:      : unordered_map(__n, hasher(), key_equal(), __a)
@@ -902,8 +902,8 @@
         -:  900:       *  Lookup requires constant time.
         -:  901:       */
         -:  902:      mapped_type&
-       23:  903:      operator[](const key_type& __k)
-       23:  904:      { return _M_h[__k]; }
+      106:  903:      operator[](const key_type& __k)
+      106:  904:      { return _M_h[__k]; }
         -:  905:
         -:  906:      mapped_type&
         -:  907:      operator[](key_type&& __k)

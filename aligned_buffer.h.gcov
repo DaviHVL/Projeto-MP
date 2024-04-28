@@ -55,26 +55,26 @@
         -:   53:
         -:   54:      alignas(__alignof__(_Tp2::_M_t)) unsigned char _M_storage[sizeof(_Tp)];
         -:   55:
-        9:   56:      __aligned_membuf() = default;
+       10:   56:      __aligned_membuf() = default;
         -:   57:
         -:   58:      // Can be used to avoid value-initialization zeroing _M_storage.
         -:   59:      __aligned_membuf(std::nullptr_t) { }
         -:   60:
         -:   61:      void*
-       18:   62:      _M_addr() noexcept
-       18:   63:      { return static_cast<void*>(&_M_storage); }
+       20:   62:      _M_addr() noexcept
+       20:   63:      { return static_cast<void*>(&_M_storage); }
         -:   64:
         -:   65:      const void*
-       33:   66:      _M_addr() const noexcept
-       33:   67:      { return static_cast<const void*>(&_M_storage); }
+       37:   66:      _M_addr() const noexcept
+       37:   67:      { return static_cast<const void*>(&_M_storage); }
         -:   68:
         -:   69:      _Tp*
-       18:   70:      _M_ptr() noexcept
-       18:   71:      { return static_cast<_Tp*>(_M_addr()); }
+       20:   70:      _M_ptr() noexcept
+       20:   71:      { return static_cast<_Tp*>(_M_addr()); }
         -:   72:
         -:   73:      const _Tp*
-       33:   74:      _M_ptr() const noexcept
-       33:   75:      { return static_cast<const _Tp*>(_M_addr()); }
+       37:   74:      _M_ptr() const noexcept
+       37:   75:      { return static_cast<const _Tp*>(_M_addr()); }
         -:   76:    };
         -:   77:
         -:   78:  // Similar to __aligned_membuf but aligned for complete objects, not members.
@@ -90,30 +90,30 @@
         -:   88:	std::aligned_storage<sizeof(_Tp), std::alignment_of<_Tp>::value>::type
         -:   89:	_M_storage;
         -:   90:
-       81:   91:      __aligned_buffer() = default;
+      216:   91:      __aligned_buffer() = default;
         -:   92:
         -:   93:      // Can be used to avoid value-initialization
         -:   94:      __aligned_buffer(std::nullptr_t) { }
         -:   95:
         -:   96:      void*
-      264:   97:      _M_addr() noexcept
+      740:   97:      _M_addr() noexcept
         -:   98:      {
-      264:   99:        return static_cast<void*>(&_M_storage);
+      740:   99:        return static_cast<void*>(&_M_storage);
         -:  100:      }
         -:  101:
         -:  102:      const void*
-       60:  103:      _M_addr() const noexcept
+      288:  103:      _M_addr() const noexcept
         -:  104:      {
-       60:  105:        return static_cast<const void*>(&_M_storage);
+      288:  105:        return static_cast<const void*>(&_M_storage);
         -:  106:      }
         -:  107:
         -:  108:      _Tp*
-      264:  109:      _M_ptr() noexcept
-      264:  110:      { return static_cast<_Tp*>(_M_addr()); }
+      740:  109:      _M_ptr() noexcept
+      740:  110:      { return static_cast<_Tp*>(_M_addr()); }
         -:  111:
         -:  112:      const _Tp*
-       60:  113:      _M_ptr() const noexcept
-       60:  114:      { return static_cast<const _Tp*>(_M_addr()); }
+      288:  113:      _M_ptr() const noexcept
+      288:  114:      { return static_cast<const _Tp*>(_M_addr()); }
         -:  115:    };
         -:  116:
         -:  117:} // namespace

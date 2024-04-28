@@ -321,8 +321,8 @@
         -:  319:			  && _PCCP::template
         -:  320:			   _ImplicitlyMoveConvertiblePair<_U1, _U2>(),
         -:  321:                         bool>::type=true>
-       56:  322:	constexpr pair(_U1&& __x, _U2&& __y)
-       56:  323:	: first(std::forward<_U1>(__x)), second(std::forward<_U2>(__y)) { }
+      192:  322:	constexpr pair(_U1&& __x, _U2&& __y)
+      192:  323:	: first(std::forward<_U1>(__x)), second(std::forward<_U2>(__y)) { }
         -:  324:
         -:  325:      template<typename _U1, typename _U2, typename
         -:  326:	       enable_if<_PCCP::template
@@ -492,12 +492,12 @@
         -:  490:  template<typename _T1, typename _T2>
         -:  491:    constexpr pair<typename __decay_and_strip<_T1>::__type,
         -:  492:                   typename __decay_and_strip<_T2>::__type>
-       35:  493:    make_pair(_T1&& __x, _T2&& __y)
+      168:  493:    make_pair(_T1&& __x, _T2&& __y)
         -:  494:    {
         -:  495:      typedef typename __decay_and_strip<_T1>::__type __ds_type1;
         -:  496:      typedef typename __decay_and_strip<_T2>::__type __ds_type2;
         -:  497:      typedef pair<__ds_type1, __ds_type2> 	      __pair_type;
-       35:  498:      return __pair_type(std::forward<_T1>(__x), std::forward<_T2>(__y));
+      168:  498:      return __pair_type(std::forward<_T1>(__x), std::forward<_T2>(__y));
         -:  499:    }
         -:  500:#else
         -:  501:  template<typename _T1, typename _T2>

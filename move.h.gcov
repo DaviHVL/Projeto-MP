@@ -46,10 +46,10 @@
         -:   44:   */
         -:   45:  template<typename _Tp>
         -:   46:    inline _Tp*
-     5488:   47:    __addressof(_Tp& __r) _GLIBCXX_NOEXCEPT
+     5870:   47:    __addressof(_Tp& __r) _GLIBCXX_NOEXCEPT
         -:   48:    {
         -:   49:      return reinterpret_cast<_Tp*>
-     5488:   50:	(&const_cast<char&>(reinterpret_cast<const volatile char&>(__r)));
+     5870:   50:	(&const_cast<char&>(reinterpret_cast<const volatile char&>(__r)));
         -:   51:    }
         -:   52:
         -:   53:_GLIBCXX_END_NAMESPACE_VERSION
@@ -75,8 +75,8 @@
         -:   73:   */
         -:   74:  template<typename _Tp>
         -:   75:    constexpr _Tp&&
-     3964:   76:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
-     3964:   77:    { return static_cast<_Tp&&>(__t); }
+     5848:   76:    forward(typename std::remove_reference<_Tp>::type& __t) noexcept
+     5848:   77:    { return static_cast<_Tp&&>(__t); }
         -:   78:
         -:   79:  /**
         -:   80:   *  @brief  Forward an rvalue.
@@ -100,8 +100,8 @@
         -:   98:  */
         -:   99:  template<typename _Tp>
         -:  100:    constexpr typename std::remove_reference<_Tp>::type&&
-     4750:  101:    move(_Tp&& __t) noexcept
-     4750:  102:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
+     4909:  101:    move(_Tp&& __t) noexcept
+     4909:  102:    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
         -:  103:
         -:  104:
         -:  105:  template<typename _Tp>
@@ -134,8 +134,8 @@
         -:  132:  */
         -:  133:  template<typename _Tp>
         -:  134:    inline _Tp*
-       45:  135:    addressof(_Tp& __r) noexcept
-       45:  136:    { return std::__addressof(__r); }
+      216:  135:    addressof(_Tp& __r) noexcept
+      216:  136:    { return std::__addressof(__r); }
         -:  137:
         -:  138:  // C++11 version of std::exchange for internal use.
         -:  139:  template <typename _Tp, typename _Up = _Tp>
@@ -178,7 +178,7 @@
         -:  176:#if __cplusplus >= 201103L
         -:  177:    typename enable_if<__and_<is_move_constructible<_Tp>,
         -:  178:			      is_move_assignable<_Tp>>::value>::type
-     1088:  179:    swap(_Tp& __a, _Tp& __b)
+     1126:  179:    swap(_Tp& __a, _Tp& __b)
         -:  180:    noexcept(__and_<is_nothrow_move_constructible<_Tp>,
         -:  181:	            is_nothrow_move_assignable<_Tp>>::value)
         -:  182:#else
@@ -189,10 +189,10 @@
         -:  187:      // concept requirements
         -:  188:      __glibcxx_function_requires(_SGIAssignableConcept<_Tp>)
         -:  189:
-     1088:  190:      _Tp __tmp = _GLIBCXX_MOVE(__a);
-     1088:  191:      __a = _GLIBCXX_MOVE(__b);
-     1088:  192:      __b = _GLIBCXX_MOVE(__tmp);
-     1088:  193:    }
+     1126:  190:      _Tp __tmp = _GLIBCXX_MOVE(__a);
+     1126:  191:      __a = _GLIBCXX_MOVE(__b);
+     1126:  192:      __b = _GLIBCXX_MOVE(__tmp);
+     1126:  193:    }
         -:  194:
         -:  195:  // _GLIBCXX_RESOLVE_LIB_DEFECTS
         -:  196:  // DR 809. std::swap should be overloaded for array types.

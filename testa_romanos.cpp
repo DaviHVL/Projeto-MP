@@ -31,3 +31,25 @@ TEST_CASE( "Numeros romanos - algarismos com resultados", "[romanos]" ) {
 
     REQUIRE( romanos_para_decimal("MD") == 1500 );
 }
+
+TEST_CASE( "Numeros romanos - casos certos e errados", "[romanos]" ) {
+    REQUIRE( romanos_para_decimal("III") == 3 );
+
+    REQUIRE( romanos_para_decimal("IX") == 9 );
+
+    REQUIRE( romanos_para_decimal("XIV") == 14 );
+
+    REQUIRE( romanos_para_decimal("LXVII") == 67 );
+
+    REQUIRE( romanos_para_decimal("XCIX") == 99 );
+
+    REQUIRE( romanos_para_decimal("IIII") == -1 );
+
+    REQUIRE( romanos_para_decimal("VX") == -1 );
+
+    REQUIRE( romanos_para_decimal("XIX") == 19 );
+
+    REQUIRE( romanos_para_decimal("LL") == -1 );
+
+    REQUIRE( romanos_para_decimal("DM") == -1 );
+}
