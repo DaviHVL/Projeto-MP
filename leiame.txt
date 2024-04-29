@@ -1,0 +1,41 @@
+﻿# Projeto MP (Trabalho 1)
+
+## Introdução
+O projeto busca resolver o problema de conversão de algarismos romanos para algarismo arábicos. Dessa forma, com a entrada sendo uma string de tamanho até 30 caracteres, ele retorna o inteiros correspondente.
+Caso a string seja inválida, a função retorna -1. 
+Dito isso, seu desenvolvimento deve ser orientado pela metodologia de Desenvolvimento Orientado a Testes (TDD).
+
+## Requisitos
+- Compilador GCC
+- MinGW
+- CodeBlocks
+- Git
+- Google Test
+- Cppcheck
+- Gcov
+- Gcovr
+- GDB
+- Make
+- 7-Zip
+
+Estrutura de Arquivos:
+- romano.cpp: Implementação das funções do conversor.
+- romano.hpp: Declaração das funções do conversor.
+- testa_romano.cpp: Testes unitários utilizando Google Test.
+- Makefile: Arquivo para automação da compilação, teste e cobertura.
+- cpplint.py: Script para checagem de estilo de código.
+- catch.hpp: Biblioteca para testes unitários.
+
+## Compilação e Execução
+Para compilar o projeto, execute:
+make gcov
+Assim aparecerá quais testes passaram e quais não. Além disso, será mostrada a cobertura do código.
+Obs.: para uma cobertura mais visual, execute: gcovr
+
+Para verificar se o código está nos moldes do cpplint, execute:
+cpplint "nome do arquivo"
+Assim, será detalhada se há algum erro na codificação do código.
+
+
+
+

@@ -1,5 +1,5 @@
 all: testa_romanos.cpp   romanos.cpp romanos.hpp romanos.o
-	g++ -std=c++11 -Wall romanos.o testa_romanos.cpp -o testa_romanos
+	g++ -std=c++11 -Wall -fprofile-arcs -ftest-coverage romanos.o testa_romanos.cpp -o testa_romanos
 	./testa_romanos
 	#use comentario se necessario
 
